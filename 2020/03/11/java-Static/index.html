@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://mzxblog.github.io">
-  <title>java-String | 包包的blog</title>
+  <title>java-Stastic | 包包的blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="String">
+  <meta name="description" content="Stastic">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java-String">
-<meta property="og:url" content="http://mzxblog.github.io/2020/03/08/Java-String/index.html">
+<meta property="og:title" content="java-Stastic">
+<meta property="og:url" content="http://mzxblog.github.io/2020/03/11/java-Static/index.html">
 <meta property="og:site_name" content="包包的blog">
-<meta property="og:description" content="String">
+<meta property="og:description" content="Stastic">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-03-08T02:33:57.353Z">
-<meta property="article:modified_time" content="2020-03-09T06:22:45.249Z">
+<meta property="article:published_time" content="2020-03-11T14:03:19.306Z">
+<meta property="article:modified_time" content="2020-03-12T05:24:36.723Z">
 <meta property="article:author" content="Baobao">
 <meta name="twitter:card" content="summary">
   
@@ -172,172 +172,97 @@
 
 
 
-<article id="post-Java-String" class="article article-type-post " itemscope itemprop="blogPost">
+<article id="post-java-Static" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      java-String
+      java-Stastic
     </h1>
   
 
         
-        <a href="/2020/03/08/Java-String/" class="archive-article-date">
-  	<time datetime="2020-03-08T02:33:57.353Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-08</time>
+        <a href="/2020/03/11/java-Static/" class="archive-article-date">
+  	<time datetime="2020-03-11T14:03:19.306Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-11</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><a id="more"></a>
-<p>java.lang.String类代表字符串。<br>API当中说：Java 程序中的所有字符串字面值（如 “abc” ）都作为此类的实例实现。<br>其实就是说：程序当中所有的双引号字符串，都是String类的对象。（就算没有new，也照样是。）</p>
-<p>字符串的特点：</p>
+        <h2 id="Stastic"><a href="#Stastic" class="headerlink" title="Stastic"></a>Stastic</h2><a id="more"></a>
+
+<h2 id="成员变量使用了static关键字"><a href="#成员变量使用了static关键字" class="headerlink" title="成员变量使用了static关键字"></a>成员变量使用了static关键字</h2><p>如果一个成员变量使用了static关键字，那么这个变量不再属于对象自己，而是属于所在的类。多个对象共享同一份数据。<br> */<br>public class Demo01StaticField {</p>
+<pre><code>public static void main(String[] args) {
+
+    Student two = new Student(&quot;黄蓉&quot;, 16);
+    two.room = &quot;101教室&quot;;
+    System.out.println(&quot;姓名：&quot; + two.getName()
+            + &quot;，年龄：&quot; + two.getAge() + &quot;，教室：&quot; + two.room
+            + &quot;，学号：&quot; + two.getId());
+
+    Student one = new Student(&quot;郭靖&quot;, 19);
+    System.out.println(&quot;姓名：&quot; + one.getName()
+            + &quot;，年龄：&quot; + one.getAge() + &quot;，教室：&quot; + one.room
+            + &quot;，学号：&quot; + one.getId());
+}</code></pre><p>}<br>————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————</p>
+<h2 id="static修饰成员方法"><a href="#static修饰成员方法" class="headerlink" title="static修饰成员方法"></a>static修饰成员方法</h2><p>一旦使用static修饰成员方法，那么这就成为了静态方法。静态方法不属于对象，而是属于类的。</p>
+<p>如果没有static关键字，那么必须首先创建对象，然后通过对象才能使用它。<br>如果有了static关键字，那么不需要创建对象，直接就能通过类名称来使用它。</p>
+<p>无论是成员变量，还是成员方法。如果有了static，都推荐使用类名称进行调用。<br>静态变量：类名称.静态变量<br>静态方法：类名称.静态方法()</p>
+<p>注意事项：</p>
 <ol>
-<li>字符串的内容永不可变。【重点】</li>
-<li>正是因为字符串不可改变，所以字符串是可以共享使用的。</li>
-<li>字符串效果上相当于是char[]字符数组，但是底层原理是byte[]字节数组。</li>
+<li><p>静态不能直接访问非静态。<br>原因：因为在内存当中是【先】有的静态内容，【后】有的非静态内容。<br>“先人不知道后人，但是后人知道先人。”</p>
+</li>
+<li><p>静态方法当中不能用this。<br>原因：this代表当前对象，通过谁调用的方法，谁就是当前对象。<br>*/<br>public class Demo02StaticMethod {</p>
+<p> public static void main(String[] args) {</p>
+<pre><code>MyClass obj = new MyClass(); // 首先创建对象
+// 然后才能使用没有static关键字的内容
+obj.method();
+
+// 对于静态方法来说，可以通过对象名进行调用，也可以直接通过类名称来调用。
+obj.methodStatic(); // 正确，不推荐，这种写法在编译之后也会被javac翻译成为“类名称.静态方法名”
+MyClass.methodStatic(); // 正确，推荐
+
+// 对于本来当中的静态方法，可以省略类名称
+myMethod();
+Demo02StaticMethod.myMethod(); // 完全等效</code></pre><p> }</p>
+<p> public static void myMethod() {</p>
+<pre><code>System.out.println(&quot;自己的方法！&quot;);</code></pre><p> }</p>
+</li>
 </ol>
-<hr>
-<h2 id="创建字符串的常见3-1种方式。"><a href="#创建字符串的常见3-1种方式。" class="headerlink" title="创建字符串的常见3+1种方式。"></a>创建字符串的常见3+1种方式。</h2><p>三种构造方法：<br>public String()：创建一个空白字符串，不含有任何内容。<br>public String(char[] array)：根据字符数组的内容，来创建对应的字符串。<br>public String(byte[] array)：根据字节数组的内容，来创建对应的字符串。<br>一种直接创建：<br>String str = “Hello”; // 右边直接用双引号</p>
-<p>注意：直接写上双引号，就是字符串对象。</p>
-<p>public class Demo01String {</p>
+<p>}<br>————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————</p>
+<h2 id="静态代码块"><a href="#静态代码块" class="headerlink" title="静态代码块"></a>静态代码块</h2><p>静态代码块的格式是：</p>
+<p>public class 类名称 {<br>    static {<br>        // 静态代码块的内容<br>    }<br>}</p>
+<p>特点：当第一次用到本类时，静态代码块执行唯一的一次。<br>静态内容总是优先于非静态，所以静态代码块比构造方法先执行。</p>
+<p>静态代码块的典型用途：<br>用来一次性地对静态成员变量进行赋值。<br> */<br>public class Demo04Static {</p>
 <pre><code>public static void main(String[] args) {
-    // 使用空参构造
-    String str1 = new String(); // 小括号留空，说明字符串什么内容都没有。
-    System.out.println(&quot;第1个字符串：&quot; + str1);
+    Person one = new Person();
+    Person two = new Person();
+}</code></pre><p>}<br>————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————<br>public class MyClass {</p>
+<pre><code>int num; // 成员变量
+static int numStatic; // 静态变量
 
-    // 根据字符数组创建字符串
-    char[] charArray = { &apos;A&apos;, &apos;B&apos;, &apos;C&apos; };
-    String str2 = new String(charArray);
-    System.out.println(&quot;第2个字符串：&quot; + str2);
+// 成员方法
+public void method() {
+    System.out.println(&quot;这是一个成员方法。&quot;);
+    // 成员方法可以访问成员变量
+    System.out.println(num);
+    // 成员方法可以访问静态变量
+    System.out.println(numStatic);
+}
 
-    // 根据字节数组创建字符串
-    byte[] byteArray = { 97, 98, 99 };
-    String str3 = new String(byteArray);
-    System.out.println(&quot;第3个字符串：&quot; + str3);
+// 静态方法
+public static void methodStatic() {
+    System.out.println(&quot;这是一个静态方法。&quot;);
+    // 静态方法可以访问静态变量
+    System.out.println(numStatic);
+    // 静态不能直接访问非静态【重点】</code></pre><p>//        System.out.println(num); // 错误写法！</p>
+<pre><code>// 静态方法中不能使用this关键字。</code></pre><p>//        System.out.println(this); // 错误写法！<br>    }</p>
+<p>}<br>————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————</p>
+<p>————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————</p>
 
-    // 直接创建
-    String str4 = &quot;Hello&quot;;
-    System.out.println(&quot;第4个字符串：&quot; + str4);
-}</code></pre><h2 id=""><a href="#" class="headerlink" title="}"></a>}</h2><h2 id="字符串常量池"><a href="#字符串常量池" class="headerlink" title="字符串常量池"></a>字符串常量池</h2><p>对于基本类型来说，==是进行数值的比较。<br>对于引用类型来说，==是进行【地址值】的比较。</p>
-<p> public class Demo02StringPool {</p>
-<pre><code>public static void main(String[] args) {
-    String str1 = &quot;abc&quot;;
-    String str2 = &quot;abc&quot;;
-
-    char[] charArray = {&apos;a&apos;, &apos;b&apos;, &apos;c&apos;};
-    String str3 = new String(charArray);
-
-    System.out.println(str1 == str2); // true
-    System.out.println(str1 == str3); // false
-    System.out.println(str2 == str3); // false
-}</code></pre><h2 id="-1"><a href="#-1" class="headerlink" title="}"></a>}</h2><h2 id="String当中与获取相关的常用方法有："><a href="#String当中与获取相关的常用方法有：" class="headerlink" title="String当中与获取相关的常用方法有："></a>String当中与获取相关的常用方法有：</h2><p>public int length()：获取字符串当中含有的字符个数，拿到字符串长度。<br>public String concat(String str)：将当前字符串和参数字符串拼接成为返回值新的字符串。<br>public char charAt(int index)：获取指定索引位置的单个字符。（索引从0开始。）<br>public int indexOf(String str)：查找参数字符串在本字符串当中首次出现的索引位置，如果没有返回-1值。</p>
-<p>public class Demo02StringGet {</p>
-<pre><code>public static void main(String[] args) {
-    // 获取字符串的长度
-    int length = &quot;asdasfeutrvauevbueyvb&quot;.length();
-    System.out.println(&quot;字符串的长度是：&quot; + length);
-
-    // 拼接字符串
-    String str1 = &quot;Hello&quot;;
-    String str2 = &quot;World&quot;;
-    String str3 = str1.concat(str2);
-    System.out.println(str1); // Hello，原封不动
-    System.out.println(str2); // World，原封不动
-    System.out.println(str3); // HelloWorld，新的字符串
-    System.out.println(&quot;==============&quot;);
-
-    // 获取指定索引位置的单个字符
-    char ch = &quot;Hello&quot;.charAt(1);
-    System.out.println(&quot;在1号索引位置的字符是：&quot; + ch);
-    System.out.println(&quot;==============&quot;);
-
-    // 查找参数字符串在本来字符串当中出现的第一次索引位置
-    // 如果根本没有，返回-1值
-    String original = &quot;HelloWorldHelloWorld&quot;;
-    int index = original.indexOf(&quot;llo&quot;);
-    System.out.println(&quot;第一次索引值是：&quot; + index); // 2
-
-    System.out.println(&quot;HelloWorld&quot;.indexOf(&quot;abc&quot;)); // -1
-}</code></pre><p>}</p>
-<hr>
-<h2 id="字符串的截取方法："><a href="#字符串的截取方法：" class="headerlink" title="字符串的截取方法："></a>字符串的截取方法：</h2><p>public String substring(int index)：截取从参数位置一直到字符串末尾，返回新字符串。<br>public String substring(int begin, int end)：截取从begin开始，一直到end结束，中间的字符串。<br>备注：[begin,end)，包含左边，不包含右边。</p>
-<p>public class Demo03Substring {</p>
-<pre><code>public static void main(String[] args) {
-    String str1 = &quot;HelloWorld&quot;;
-    String str2 = str1.substring(5);
-    System.out.println(str1); // HelloWorld，原封不动
-    System.out.println(str2); // World，新字符串
-    System.out.println(&quot;================&quot;);
-
-    String str3 = str1.substring(4, 7);
-    System.out.println(str3); // oWo
-    System.out.println(&quot;================&quot;);
-
-    // 下面这种写法，字符串的内容仍然是没有改变的
-    // 下面有两个字符串：&quot;Hello&quot;，&quot;Java&quot;
-    // strA当中保存的是地址值。
-    // 本来地址值是Hello的0x666，
-    // 后来地址值变成了Java的0x999
-    String strA = &quot;Hello&quot;;
-    System.out.println(strA); // Hello
-    strA = &quot;Java&quot;;
-    System.out.println(strA); // Java
-}</code></pre><p>}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ————————————————————————————————————————</p>
-<h2 id="String当中与转换相关的常用方法有："><a href="#String当中与转换相关的常用方法有：" class="headerlink" title="String当中与转换相关的常用方法有："></a>String当中与转换相关的常用方法有：</h2><p>public char[] toCharArray()：将当前字符串拆分成为字符数组作为返回值。<br>public byte[] getBytes()：获得当前字符串底层的字节数组。<br>public String replace(CharSequence oldString, CharSequence newString)：<br>将所有出现的老字符串替换成为新的字符串，返回替换之后的结果新字符串。<br>备注：CharSequence意思就是说可以接受字符串类型。<br> */<br>public class Demo04StringConvert {</p>
-<pre><code>public static void main(String[] args) {
-    // 转换成为字符数组
-    char[] chars = &quot;Hello&quot;.toCharArray();
-    System.out.println(chars[0]); // H
-    System.out.println(chars.length); // 5
-    System.out.println(&quot;==============&quot;);
-
-    // 转换成为字节数组
-    byte[] bytes = &quot;abc&quot;.getBytes();
-    for (int i = 0; i &lt; bytes.length; i++) {
-        System.out.println(bytes[i]);
-    }
-    System.out.println(&quot;==============&quot;);
-
-    // 字符串的内容替换
-    String str1 = &quot;How do you do?&quot;;
-    String str2 = str1.replace(&quot;o&quot;, &quot;*&quot;);
-    System.out.println(str1); // How do you do?
-    System.out.println(str2); // H*w d* y*u d*?
-    System.out.println(&quot;==============&quot;);
-
-    String lang1 = &quot;会不会玩儿呀！你大爷的！你大爷的！你大爷的！！！&quot;;
-    String lang2 = lang1.replace(&quot;你大爷的&quot;, &quot;****&quot;);
-    System.out.println(lang2); // 会不会玩儿呀！****！****！****！！！
-}</code></pre><p>}</p>
-<hr>
-<h2 id="分割字符串的方法："><a href="#分割字符串的方法：" class="headerlink" title="分割字符串的方法："></a>分割字符串的方法：</h2><p>public String[] split(String regex)：按照参数的规则，将字符串切分成为若干部分。</p>
-<p>注意事项：<br>split方法的参数其实是一个“正则表达式”，今后学习。<br>今天要注意：如果按照英文句点“.”进行切分，必须写”\.”（两个反斜杠）<br> */<br>public class Demo05StringSplit {</p>
-<pre><code>public static void main(String[] args) {
-    String str1 = &quot;aaa,bbb,ccc&quot;;
-    String[] array1 = str1.split(&quot;,&quot;);
-    for (int i = 0; i &lt; array1.length; i++) {
-        System.out.println(array1[i]);
-    }
-    System.out.println(&quot;===============&quot;);
-
-    String str2 = &quot;aaa bbb ccc&quot;;
-    String[] array2 = str2.split(&quot; &quot;);
-    for (int i = 0; i &lt; array2.length; i++) {
-        System.out.println(array2[i]);
-    }
-    System.out.println(&quot;===============&quot;);
-
-    String str3 = &quot;XXX.YYY.ZZZ&quot;;
-    String[] array3 = str3.split(&quot;\\.&quot;);
-    System.out.println(array3.length); // 0
-    for (int i = 0; i &lt; array3.length; i++) {
-        System.out.println(array3[i]);
-    }
-}</code></pre><h2 id="-2"><a href="#-2" class="headerlink" title="}"></a>}</h2>
       
 
       
@@ -437,7 +362,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://sxycmzx321.github.io/03/08/Java-String/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://sxycmzx321.github.io/03/11/java-Static/" alt="微信分享二维码">
     </div>
 </div> 
 
@@ -451,18 +376,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/03/11/java-Static/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          java-Stastic
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/03/02/java-ArrayList/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Java-ArrayList</div>
+    <a href="/2020/03/08/Java-String/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">java-String</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -489,7 +405,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#String"><span class="toc-number">1.</span> <span class="toc-text">String</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建字符串的常见3-1种方式。"><span class="toc-number">2.</span> <span class="toc-text">创建字符串的常见3+1种方式。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">}</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串常量池"><span class="toc-number">4.</span> <span class="toc-text">字符串常量池</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#-1"><span class="toc-number">5.</span> <span class="toc-text">}</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#String当中与获取相关的常用方法有："><span class="toc-number">6.</span> <span class="toc-text">String当中与获取相关的常用方法有：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串的截取方法："><span class="toc-number">7.</span> <span class="toc-text">字符串的截取方法：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#String当中与转换相关的常用方法有："><span class="toc-number">8.</span> <span class="toc-text">String当中与转换相关的常用方法有：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分割字符串的方法："><span class="toc-number">9.</span> <span class="toc-text">分割字符串的方法：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#-2"><span class="toc-number">10.</span> <span class="toc-text">}</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Stastic"><span class="toc-number">1.</span> <span class="toc-text">Stastic</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#成员变量使用了static关键字"><span class="toc-number">2.</span> <span class="toc-text">成员变量使用了static关键字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#static修饰成员方法"><span class="toc-number">3.</span> <span class="toc-text">static修饰成员方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#静态代码块"><span class="toc-number">4.</span> <span class="toc-text">静态代码块</span></a></li></ol>
                     </div>
                 </span>
             </div>
