@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://mzxblog.github.io">
-  <title>java-Abstract | 包包的blog</title>
+  <title>java-接口 | 包包的blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="【java-abstract】">
+  <meta name="description" content="接口的格式接口就是多个类的公共规范。接口是一种引用数据类型，最重要的内容就是其中的：抽象方法。 如何定义一个接口的格式：public interface 接口名称 {    &#x2F;&#x2F; 接口内容} 接口使用步骤： 接口不能直接使用，必须有一个“实现类”来“实现”该接口。格式：public class 实现类名称 implements 接口名称 { &#x2F;&#x2F; …} 接口的实现类必须覆盖重写（实现）接口中所有的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java-Abstract">
-<meta property="og:url" content="http://mzxblog.github.io/2020/03/20/java-Abstract/index.html">
+<meta property="og:title" content="java-接口">
+<meta property="og:url" content="http://mzxblog.github.io/2020/03/21/java-%E6%8E%A5%E5%8F%A3/index.html">
 <meta property="og:site_name" content="包包的blog">
-<meta property="og:description" content="【java-abstract】">
+<meta property="og:description" content="接口的格式接口就是多个类的公共规范。接口是一种引用数据类型，最重要的内容就是其中的：抽象方法。 如何定义一个接口的格式：public interface 接口名称 {    &#x2F;&#x2F; 接口内容} 接口使用步骤： 接口不能直接使用，必须有一个“实现类”来“实现”该接口。格式：public class 实现类名称 implements 接口名称 { &#x2F;&#x2F; …} 接口的实现类必须覆盖重写（实现）接口中所有的">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-03-20T07:28:23.438Z">
-<meta property="article:modified_time" content="2020-03-20T16:55:10.968Z">
+<meta property="article:published_time" content="2020-03-21T06:33:23.613Z">
+<meta property="article:modified_time" content="2020-03-23T03:09:24.848Z">
 <meta property="article:author" content="Baobao">
 <meta name="twitter:card" content="summary">
   
@@ -172,45 +172,111 @@
 
 
 
-<article id="post-java-Abstract" class="article article-type-post " itemscope itemprop="blogPost">
+<article id="post-java-接口" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      java-Abstract
+      java-接口
     </h1>
   
 
         
-        <a href="/2020/03/20/java-Abstract/" class="archive-article-date">
-  	<time datetime="2020-03-20T07:28:23.438Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-20</time>
+        <a href="/2020/03/21/java-%E6%8E%A5%E5%8F%A3/" class="archive-article-date">
+  	<time datetime="2020-03-21T06:33:23.613Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-21</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="【java-abstract】"><a href="#【java-abstract】" class="headerlink" title="【java-abstract】"></a>【java-abstract】</h1><a id="more"></a>
+        <h2 id="接口的格式"><a href="#接口的格式" class="headerlink" title="接口的格式"></a>接口的格式</h2><p>接口就是多个类的公共规范。<br>接口是一种引用数据类型，最重要的内容就是其中的：抽象方法。</p>
+<p>如何定义一个接口的格式：<br>public interface 接口名称 {<br>    // 接口内容<br>}</p>
+<h2 id="接口使用步骤："><a href="#接口使用步骤：" class="headerlink" title="接口使用步骤："></a>接口使用步骤：</h2><ol>
+<li>接口不能直接使用，必须有一个“实现类”来“实现”该接口。<br>格式：<br>public class 实现类名称 implements 接口名称 {<br> // …<br>}</li>
+<li>接口的实现类必须覆盖重写（实现）接口中所有的抽象方法。<br>实现：去掉abstract关键字，加上方法体大括号。</li>
+<li>创建实现类的对象，进行使用。</li>
+</ol>
+<p>注意事项：<br>如果实现类并没有覆盖重写接口中所有的抽象方法，那么这个实现类自己就必须是抽象类。<br> */<br>public class Demo01Interface {</p>
+<pre><code>public static void main(String[] args) {
+    // 错误写法！不能直接new接口对象使用。</code></pre><p>//        MyInterfaceAbstract inter = new MyInterfaceAbstract();</p>
+<pre><code>    // 创建实现类的对象使用
+    MyInterfaceAbstractImpl impl = new MyInterfaceAbstractImpl();
+    impl.methodAbs1();
+    impl.methodAbs2();
+}</code></pre><p>}</p>
+<h2 id="接口的默认方法"><a href="#接口的默认方法" class="headerlink" title="接口的默认方法"></a>接口的默认方法</h2><p>从Java 8开始，接口里允许定义默认方法。<br>格式：<br>public default 返回值类型 方法名称(参数列表) {<br>    方法体<br>}</p>
+<h3 id="备注：接口当中的默认方法，可以解决接口升级的问题。"><a href="#备注：接口当中的默认方法，可以解决接口升级的问题。" class="headerlink" title="备注：接口当中的默认方法，可以解决接口升级的问题。"></a>备注：接口当中的默认方法，可以解决接口升级的问题。</h3><p> */<br>public interface MyInterfaceDefault {</p>
+<pre><code>// 抽象方法
+public abstract void methodAbs();
 
+// 新添加了一个抽象方法</code></pre><p>//    public abstract void methodAbs2();</p>
+<pre><code>// 新添加的方法，改成默认方法
+public default void methodDefault() {
+    System.out.println(&quot;这是新添加的默认方法&quot;);
+}</code></pre><p>}</p>
+<h2 id="接口默认方法的使用"><a href="#接口默认方法的使用" class="headerlink" title="接口默认方法的使用"></a>接口默认方法的使用</h2><ol>
+<li><p>接口的默认方法，可以通过接口实现类对象，直接调用。</p>
+</li>
+<li><p>接口的默认方法，也可以被接口实现类进行覆盖重写。<br>public class Demo02Interface {</p>
+<p> public static void main(String[] args) {</p>
+<pre><code>// 创建了实现类对象
+MyInterfaceDefaultA a = new MyInterfaceDefaultA();
+a.methodAbs(); // 调用抽象方法，实际运行的是右侧实现类。
 
+// 调用默认方法，如果实现类当中没有，会向上找接口
+a.methodDefault(); // 这是新添加的默认方法
+System.out.println(&quot;==========&quot;);
 
-<p>抽象方法：就是加上abstract关键字，然后去掉大括号，直接分号结束。<br>抽象类：抽象方法所在的类，必须是抽象类才行。在class之前写上abstract即可。</p>
-<p>如何使用抽象类和抽象方法：</p>
-<ol>
-<li><p>不能直接创建new抽象类对象。</p>
-</li>
-<li><p>必须用一个子类来继承抽象父类。</p>
-</li>
-<li><p>子类必须覆盖重写抽象父类当中所有的抽象方法。<br>覆盖重写（实现）：子类去掉抽象方法的abstract关键字，然后补上方法体大括号。</p>
-</li>
-<li><p>创建子类对象进行使用。<br>*/<br>public abstract class Animal {</p>
-<p> // 这是一个抽象方法，代表吃东西，但是具体吃什么（大括号的内容）不确定。<br> public abstract void eat();</p>
-<p> // 这是普通的成员方法<br>//    public void normalMethod() {<br>//<br>//    }</p>
+MyInterfaceDefaultB b = new MyInterfaceDefaultB();
+b.methodAbs();
+b.methodDefault(); // 实现类B覆盖重写了接口的默认方法</code></pre><p> }</p>
 </li>
 </ol>
-<p>}</p>
+<h2 id=""><a href="#" class="headerlink" title="}"></a>}</h2><p>从Java 8开始，接口当中允许定义静态方法。<br>格式：<br>public static 返回值类型 方法名称(参数列表) {<br>    方法体<br>}<br>提示：就是将abstract或者default换成static即可，带上方法体。<br> */<br>public interface MyInterfaceStatic {</p>
+<pre><code>public static void methodStatic() {
+    System.out.println(&quot;这是接口的静态方法！&quot;);
+}</code></pre><h2 id="-1"><a href="#-1" class="headerlink" title="}"></a>}</h2><p>问题描述：<br>我们需要抽取一个共有方法，用来解决两个默认方法之间重复代码的问题。<br>但是这个共有方法不应该让实现类使用，应该是私有化的。</p>
+<p>解决方案：<br>从Java 9开始，接口当中允许定义私有方法。</p>
+<ol>
+<li><p>普通私有方法，解决多个默认方法之间重复代码问题<br>格式：<br>private 返回值类型 方法名称(参数列表) {<br> 方法体<br>}</p>
+</li>
+<li><p>静态私有方法，解决多个静态方法之间重复代码问题<br>格式：<br>private static 返回值类型 方法名称(参数列表) {<br> 方法体<br>}</p>
+</li>
+</ol>
+<p>public interface MyInterfacePrivateA {</p>
+<pre><code>public default void methodDefault1() {
+    System.out.println(&quot;默认方法1&quot;);
+    methodCommon();
+}
+
+public default void methodDefault2() {
+    System.out.println(&quot;默认方法2&quot;);
+    methodCommon();
+}
+
+private void methodCommon() {
+    System.out.println(&quot;AAA&quot;);
+    System.out.println(&quot;BBB&quot;);
+    System.out.println(&quot;CCC&quot;);
+}</code></pre><h2 id="-2"><a href="#-2" class="headerlink" title="}"></a>}</h2><h2 id="接口中常量的定义"><a href="#接口中常量的定义" class="headerlink" title="接口中常量的定义"></a>接口中常量的定义</h2><p>接口当中也可以定义“成员变量”，但是必须使用public static final三个关键字进行修饰。<br>从效果上看，这其实就是接口的【常量】。<br>格式：<br>public static final 数据类型 常量名称 = 数据值;<br>备注：<br>一旦使用final关键字进行修饰，说明不可改变。</p>
+<p>注意事项：</p>
+<ol>
+<li><p>接口当中的常量，可以省略public static final，注意：不写也照样是这样。</p>
+</li>
+<li><p>接口当中的常量，必须进行赋值；不能不赋值。</p>
+</li>
+<li><p>接口中常量的名称，使用完全大写的字母，用下划线进行分隔。（推荐命名规则）<br>*/<br>public interface MyInterfaceConst {</p>
+<p> // 这其实就是一个常量，一旦赋值，不可以修改<br> public static final int NUM_OF_MY_CLASS = 12;</p>
+</li>
+</ol>
+<h2 id="-3"><a href="#-3" class="headerlink" title="}"></a>}</h2><h2 id="接口小结"><a href="#接口小结" class="headerlink" title="接口小结"></a>接口小结</h2><p>在Java 9+版本中，接口的内容可以有:<br>1.成员变量其实是常量，格式:<br>[public] [static] [final] 数据类型常量名称=数据值;<br>注意:<br>常量必须进行赋值， 而且一旦赋值不能改变。<br>常量名称完全大写，用下划线进行分隔。</p>
+<p>2.接口中最重要的就是抽象方法，格式:<br>[public] [abstract]. 返回值类型方法名称(参数列表);<br>注意:实现类必须覆盖重写接口所有的抽象方法，除非实现类是抽象类。</p>
+<p>3.从Java 8开始，接口里允许定义默认方法，格式:<br>[public] default返回值类型方法名称(参数列表) {方法体}<br>注意:默认方法也可以被覆盖重写</p>
+<p>4.从Java 8开始，接口里允许定义静态方法，格式:<br>[public] static 返回值类型方法名称(参数列表) {方法体}<br>注意:应该通过接口名称进行调用，不能通过实现类对象调用接口静态方法</p>
+<p>5.从Java 9开始，接口里允许定义私有很乏，格式:<br>普通私有方法: private 返回值类型方法名称(参数列表) {方法体}<br>静态私有方法: private static 返回值类型方法名称(参数列表) {方法体}<br>注意: private的方法只有接口自己才能调用，不能被实现类或别人使用。</p>
 
       
 
@@ -311,7 +377,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://sxycmzx321.github.io/03/20/java-Abstract/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://sxycmzx321.github.io/03/21/java-%E6%8E%A5%E5%8F%A3/" alt="微信分享二维码">
     </div>
 </div> 
 
@@ -325,18 +391,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/03/21/java-%E6%8E%A5%E5%8F%A3/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          java-接口
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/03/12/java-Extends/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">java-Extends</div>
+    <a href="/2020/03/20/java-Abstract/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">java-Abstract</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -363,7 +420,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#【java-abstract】"><span class="toc-number">1.</span> <span class="toc-text">【java-abstract】</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#接口的格式"><span class="toc-number">1.</span> <span class="toc-text">接口的格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#接口使用步骤："><span class="toc-number">2.</span> <span class="toc-text">接口使用步骤：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#接口的默认方法"><span class="toc-number">3.</span> <span class="toc-text">接口的默认方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#备注：接口当中的默认方法，可以解决接口升级的问题。"><span class="toc-number">3.1.</span> <span class="toc-text">备注：接口当中的默认方法，可以解决接口升级的问题。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#接口默认方法的使用"><span class="toc-number">4.</span> <span class="toc-text">接口默认方法的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">5.</span> <span class="toc-text">}</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#-1"><span class="toc-number">6.</span> <span class="toc-text">}</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#-2"><span class="toc-number">7.</span> <span class="toc-text">}</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#接口中常量的定义"><span class="toc-number">8.</span> <span class="toc-text">接口中常量的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#-3"><span class="toc-number">9.</span> <span class="toc-text">}</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#接口小结"><span class="toc-number">10.</span> <span class="toc-text">接口小结</span></a></li></ol>
                     </div>
                 </span>
             </div>
